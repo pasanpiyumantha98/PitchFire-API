@@ -18,7 +18,7 @@ public class User {
     String fname;
     String lname;
     int phone;
-    int nic;
+    String nic;
     String email;
     String position;
     String password;

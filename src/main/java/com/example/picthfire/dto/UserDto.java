@@ -15,7 +15,7 @@ public class UserDto {
     String fname;
     String lname;
     int phone;
-    int nic;
+    String nic;
     String email;
     String position;
     String password;
