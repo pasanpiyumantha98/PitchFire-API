@@ -22,4 +22,10 @@ public class UserController {
 
     }
 
+    @PostMapping("/login")
+    public int login(@RequestBody UserDto userDto) {
+
+        return userService.loguser(userDto);
+    }
+
 }

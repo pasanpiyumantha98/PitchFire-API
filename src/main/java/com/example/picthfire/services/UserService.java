@@ -25,10 +25,8 @@ public class UserService {
 
     public String regUser(UserDto userDto)
     {
-
-
         //encrypting password
-        userDto.setPassword("123");
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         //setting id
         Integer maxid= userRepo.findMaxId();
@@ -49,6 +47,28 @@ public class UserService {
         {
             return "error";
         }
+
+
+    }
+
+    public int loguser(UserDto userDto)
+    {
+
+        User user = userRepo.findUserExists(userDto.getNic(),userDto.getEmail());
+
+        if(user == null) {
+            return -1;
+        } else {
+
+            boolean stat = passwordEncoder.matches(userDto.getPassword(),user.getPassword());
+
+            if(stat) {
+                return user.getId();
+            } else {
+                return -2;
+            }
+        }
+
 
 
     }
