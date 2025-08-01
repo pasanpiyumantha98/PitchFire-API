@@ -19,6 +19,7 @@ public class BookingService {
     @Autowired
     private BookingRepo bookingRepo;
 
+    // Making a new booking
     public int makebooking(BookingDto bookingDto) {
 
         //checking exsiting bookings
