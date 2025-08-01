@@ -4,7 +4,6 @@ package com.example.picthfire.services;
 import com.example.picthfire.dto.PropDto;
 import com.example.picthfire.model.Property;
 import com.example.picthfire.repo.PropertyRepo;
-import com.example.picthfire.repo.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

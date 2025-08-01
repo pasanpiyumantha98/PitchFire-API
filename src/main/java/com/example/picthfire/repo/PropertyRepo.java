@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface PropertyRepo extends JpaRepository<Property, Integer> {
 
     @Query(value="select max(id) from property", nativeQuery = true)
-    public Integer getMaxIdProp();
+    Integer getMaxIdProp();
 
 
 
