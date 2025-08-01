@@ -22,7 +22,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    
+
     //Register User
     public String regUser(UserDto userDto)
     {
