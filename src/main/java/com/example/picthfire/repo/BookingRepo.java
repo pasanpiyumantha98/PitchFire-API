@@ -17,4 +17,7 @@ public interface BookingRepo extends JpaRepository<Booking, Integer> {
 
     @Query(value="select COUNT(*) from booking where propid=?1 and date=?2 and (stime<?4 and etime>?3)",nativeQuery = true)
     int checkbooking(int propid, LocalDate date, LocalTime stime, LocalTime etime);
+
+    @Query(value="select * from booking where id=?1", nativeQuery = true)
+    Booking getBooking(int id);
 }

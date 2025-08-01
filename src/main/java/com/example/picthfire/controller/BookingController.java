@@ -1,6 +1,7 @@
 package com.example.picthfire.controller;
 
 import com.example.picthfire.dto.BookingDto;
+import com.example.picthfire.model.Booking;
 import com.example.picthfire.repo.BookingRepo;
 import com.example.picthfire.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,10 @@ public class BookingController {
     public int makebooking(@RequestBody BookingDto bookingDto) {
 
         return  bookingService.makebooking(bookingDto);
+    }
+
+    @PostMapping("/delete")
+    public String deleteBooking(@RequestBody BookingDto bookingDto) {
+        return bookingService.deleteBooking(bookingDto);
     }
 }

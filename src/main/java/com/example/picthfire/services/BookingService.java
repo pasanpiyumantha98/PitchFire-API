@@ -4,6 +4,7 @@ import com.example.picthfire.dto.BookingDto;
 import com.example.picthfire.model.Booking;
 import com.example.picthfire.repo.BookingRepo;
 import com.example.picthfire.repo.PropertyRepo;
+import com.example.picthfire.repo.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ public class BookingService {
 
     @Autowired
     private BookingRepo bookingRepo;
+    @Autowired
+    private UserRepo userRepo;
 
     // Making a new booking
     public int makebooking(BookingDto bookingDto) {
@@ -43,6 +46,21 @@ public class BookingService {
         {
             return -99;
         }
+
+    }
+
+    public String deleteBooking(BookingDto bookingDto)
+    {
+        Booking booking = bookingRepo.getBooking(bookingDto.getId());
+
+        if(booking == null) {
+            return "notfound";
+        } else
+        {
+            bookingRepo.delete(booking);
+            return "deleted";
+        }
+
 
     }
 }
