@@ -19,5 +19,6 @@ public class UserDto {
     String email;
     String position;
     String password;
+    String newp;
 
 }

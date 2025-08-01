@@ -14,4 +14,5 @@ public class PropDto {
     String type;
     int rate;
 
+
 }

@@ -33,4 +33,9 @@ public class UserController {
        return userService.removeUser(userDto);
     }
 
+    @PostMapping("/changepass")
+    public String changepass(@RequestBody UserDto userDto) {
+        return userService.changepass(userDto);
+    }
+
 }

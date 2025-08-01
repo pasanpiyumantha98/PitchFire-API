@@ -22,7 +22,8 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
+    
+    //Register User
     public String regUser(UserDto userDto)
     {
         //encrypting password
@@ -51,6 +52,8 @@ public class UserService {
 
     }
 
+
+    //login user
     public int loguser(UserDto userDto)
     {
 
@@ -70,6 +73,8 @@ public class UserService {
         }
     }
 
+
+    //Remove user
     public String removeUser(UserDto userDto)
     {
         User user = userRepo.findUserExists(userDto.getNic(),userDto.getEmail(), userDto.getId());
@@ -83,8 +88,26 @@ public class UserService {
             userRepo.delete(user);
             return "done";
         }
+    }
 
 
+    //change password
+    public String changepass(UserDto userDto)
+    {
+        User user =  userRepo.findUserExists(userDto.getNic(),userDto.getEmail(), userDto.getId());
+
+        boolean stat = passwordEncoder.matches(userDto.getPassword(),user.getPassword());
+
+        if(stat) {
+
+           String newp=  passwordEncoder.encode(userDto.getNewp());
+            userRepo.updatePass(newp,userDto.getId());
+           return "done";
+
+        } else
+        {
+            return "error";
+        }
     }
 
 
