@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 
 public interface BookingRepo extends JpaRepository<Booking, Integer> {
@@ -27,8 +28,10 @@ public interface BookingRepo extends JpaRepository<Booking, Integer> {
     int getpropid(int id);
 
     @Modifying
-    @Query(value="update booking set date=?1 stime=?2 etime=?3 where id=?4", nativeQuery = true)
+    @Query(value="update booking set date=?1, stime=?2, etime=?3 where id=?4", nativeQuery = true)
     void updateBooking(LocalDate date, LocalTime stime, LocalTime etime, int id);
 
+    @Query(value="select * from booking where date=?1", nativeQuery = true)
+    List<Booking> getBookings(LocalDate date);
 
 }

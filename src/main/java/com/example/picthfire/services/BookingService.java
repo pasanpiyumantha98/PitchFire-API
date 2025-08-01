@@ -71,6 +71,7 @@ public class BookingService {
         return bookingRepo.getBooking(id);
     }
 
+    //update date and time of exsiting bookings
     public String updateBookings(BookingDto bookingDto) {
 
         Booking booking = bookingRepo.getBooking(bookingDto.getId());
