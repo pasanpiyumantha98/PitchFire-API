@@ -1,5 +1,8 @@
 package com.example.picthfire.services;
 
+import com.example.picthfire.dto.BookingDto;
+import com.example.picthfire.model.Booking;
+import com.example.picthfire.repo.BookingRepo;
 import com.example.picthfire.repo.PropertyRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,23 @@ public class BookingService {
     private ModelMapper modelMapper;
 
     @Autowired
-    private PropertyRepo propertyRepo;
+    private BookingRepo bookingRepo;
 
+    public int makebooking(BookingDto bookingDto) {
 
+        Integer maxid = bookingRepo.getMaxId();
+
+        if(maxid ==null)
+        {
+            bookingDto.setId(1001);
+        } else
+        {
+            bookingDto.setId(maxid+4);
+        }
+
+        bookingRepo.save(modelMapper.map(bookingDto, Booking.class));
+
+        return bookingDto.getId();
+
+    }
 }
