@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Service
 @Transactional
 public class BookingService {
@@ -62,5 +65,36 @@ public class BookingService {
         }
 
 
+    }
+
+    public Booking getBooking(int id) {
+        return bookingRepo.getBooking(id);
+    }
+
+    public String updateBookings(BookingDto bookingDto) {
+
+        Booking booking = bookingRepo.getBooking(bookingDto.getId());
+
+        if(booking == null) {
+            return "notfound";
+
+        } else
+        {
+            //checking exsiting bookings
+
+            int propid = bookingRepo.getpropid(bookingDto.getId());
+            int bookings = bookingRepo.checkbooking(propid,bookingDto.getDate(),bookingDto.getStime(),bookingDto.getEtime());
+
+            if(bookings == 0) {
+                return "cannotChange";
+            } else
+            {
+                LocalDate ndate = bookingDto.getDate();
+                LocalTime   stime = bookingDto.getStime();
+                LocalTime etime = bookingDto.getEtime();
+                bookingRepo.updateBooking(ndate,stime,etime,bookingDto.getId());
+                return "updated";
+            }
+        }
     }
 }

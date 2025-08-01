@@ -1,7 +1,9 @@
 package com.example.picthfire.repo;
 
+import com.example.picthfire.dto.BookingDto;
 import com.example.picthfire.model.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,4 +22,13 @@ public interface BookingRepo extends JpaRepository<Booking, Integer> {
 
     @Query(value="select * from booking where id=?1", nativeQuery = true)
     Booking getBooking(int id);
+
+    @Query(value="select propid from booking where id=?1", nativeQuery = true)
+    int getpropid(int id);
+
+    @Modifying
+    @Query(value="update booking set date=?1 stime=?2 etime=?3 where id=?4", nativeQuery = true)
+    void updateBooking(LocalDate date, LocalTime stime, LocalTime etime, int id);
+
+
 }
