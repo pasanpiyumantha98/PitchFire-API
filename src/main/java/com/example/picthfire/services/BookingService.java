@@ -21,19 +21,27 @@ public class BookingService {
 
     public int makebooking(BookingDto bookingDto) {
 
-        Integer maxid = bookingRepo.getMaxId();
+        //checking exsiting bookings
+        int booking = bookingRepo.checkbooking(bookingDto.getPropid(),bookingDto.getDate(),bookingDto.getStime(),bookingDto.getEtime());
 
-        if(maxid ==null)
-        {
-            bookingDto.setId(1001);
+        if(booking == 0) {
+
+            Integer maxid = bookingRepo.getMaxId();
+
+            if (maxid == null) {
+                bookingDto.setId(1001);
+            } else {
+                bookingDto.setId(maxid + 4);
+            }
+
+            bookingRepo.save(modelMapper.map(bookingDto, Booking.class));
+
+            return bookingDto.getId();
+
         } else
         {
-            bookingDto.setId(maxid+4);
+            return -99;
         }
-
-        bookingRepo.save(modelMapper.map(bookingDto, Booking.class));
-
-        return bookingDto.getId();
 
     }
 }
