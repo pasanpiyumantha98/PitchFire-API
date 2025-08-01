@@ -6,12 +6,14 @@ import com.example.picthfire.repo.BookingRepo;
 import com.example.picthfire.repo.PropertyRepo;
 import com.example.picthfire.repo.UserRepo;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Service
 @Transactional
@@ -98,4 +100,12 @@ public class BookingService {
             }
         }
     }
+
+    public  List<BookingDto> getBookings(BookingDto bookingDto)
+    {
+        List<Booking> bookings = bookingRepo.getBookings(bookingDto.getDate());
+        return modelMapper.map(bookings, new TypeToken<List<BookingDto>>() {}.getType());
+    }
+
+
 }

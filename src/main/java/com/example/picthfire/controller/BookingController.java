@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("api/booking")
@@ -42,7 +44,10 @@ public class BookingController {
     public String updateBooking(@RequestBody BookingDto bookingDto) {
 
         return bookingService.updateBookings(bookingDto);
+    }
 
-
+    @PostMapping("/getbooking")
+    public List<BookingDto> getBookings(@RequestBody BookingDto bookingDto) {
+        return bookingService.getBookings(bookingDto);
     }
 }
