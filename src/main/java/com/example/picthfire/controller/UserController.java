@@ -28,4 +28,9 @@ public class UserController {
         return userService.loguser(userDto);
     }
 
+    @PostMapping("/remove")
+    public String remove(@RequestBody UserDto userDto) {
+       return userService.removeUser(userDto);
+    }
+
 }

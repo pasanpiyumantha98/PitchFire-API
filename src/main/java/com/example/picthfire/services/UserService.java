@@ -38,7 +38,7 @@ public class UserService {
         }
 
         //checking user exists
-        User user = userRepo.findUserExists(userDto.getNic(),userDto.getEmail());
+        User user = userRepo.findUserExists(userDto.getNic(),userDto.getEmail(), userDto.getId());
 
         if(user == null) {
             userRepo.save(modelMapper.map(userDto,User.class));
@@ -54,7 +54,7 @@ public class UserService {
     public int loguser(UserDto userDto)
     {
 
-        User user = userRepo.findUserExists(userDto.getNic(),userDto.getEmail());
+        User user = userRepo.findUserExists(userDto.getNic(),userDto.getEmail(), userDto.getId());
 
         if(user == null) {
             return -1;
@@ -68,7 +68,21 @@ public class UserService {
                 return -2;
             }
         }
+    }
 
+    public String removeUser(UserDto userDto)
+    {
+        User user = userRepo.findUserExists(userDto.getNic(),userDto.getEmail(), userDto.getId());
+
+        if(user ==null)
+        {
+            return "error";
+
+        } else
+        {
+            userRepo.delete(user);
+            return "done";
+        }
 
 
     }
