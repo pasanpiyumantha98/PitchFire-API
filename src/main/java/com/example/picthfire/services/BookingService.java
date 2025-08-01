@@ -85,7 +85,7 @@ public class BookingService {
             int propid = bookingRepo.getpropid(bookingDto.getId());
             int bookings = bookingRepo.checkbooking(propid,bookingDto.getDate(),bookingDto.getStime(),bookingDto.getEtime());
 
-            if(bookings == 0) {
+            if(bookings > 0) {
                 return "cannotChange";
             } else
             {
