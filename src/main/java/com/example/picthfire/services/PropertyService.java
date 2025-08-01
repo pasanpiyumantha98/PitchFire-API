@@ -20,8 +20,6 @@ public class PropertyService {
 
     @Autowired
     private PropertyRepo propertyRepo;
-    @Autowired
-    private UserRepo userRepo;
 
 
     public String regprop(PropDto propDto) {
@@ -36,7 +34,7 @@ public class PropertyService {
      propDto.setId(maxid + 1);
     }
 
-    userRepo.save(modelMapper.map(propDto, Property.class));
+    propertyRepo.save(modelMapper.map(propDto,Property.class));
 
     return "success";
 
