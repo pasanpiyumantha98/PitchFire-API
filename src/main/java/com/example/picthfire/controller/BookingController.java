@@ -50,4 +50,8 @@ public class BookingController {
     public List<BookingDto> getBookings(@RequestBody BookingDto bookingDto) {
         return bookingService.getBookings(bookingDto);
     }
+
+    @PostMapping("/getrevenue")
+    public 
+
 }
