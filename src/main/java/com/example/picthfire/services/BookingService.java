@@ -107,5 +107,10 @@ public class BookingService {
         return modelMapper.map(bookings, new TypeToken<List<BookingDto>>() {}.getType());
     }
 
+    public double sumPrice(BookingDto bookingDto) {
+
+        return bookingRepo.sumPrice(bookingDto.getDate(), bookingDto.getPropid());
+    }
+
 
 }

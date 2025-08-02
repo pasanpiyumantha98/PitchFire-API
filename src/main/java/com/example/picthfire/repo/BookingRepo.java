@@ -34,4 +34,7 @@ public interface BookingRepo extends JpaRepository<Booking, Integer> {
     @Query(value="select * from booking where date=?1", nativeQuery = true)
     List<Booking> getBookings(LocalDate date);
 
+    @Query(value="select sum(price) from booking where date=?1 or propid=?2", nativeQuery = true)
+    double sumPrice(LocalDate date, int propid);
+
 }
