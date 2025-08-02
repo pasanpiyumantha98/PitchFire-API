@@ -101,6 +101,7 @@ public class BookingService {
         }
     }
 
+    //Taking list of bookings
     public  List<BookingDto> getBookings(BookingDto bookingDto)
     {
         List<Booking> bookings = bookingRepo.getBookings(bookingDto.getDate());
