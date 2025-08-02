@@ -53,7 +53,7 @@ public class BookingController {
 
     @PostMapping("/getrevenue")
     public double getRevenue(@RequestBody BookingDto bookingDto) {
-        
+        return bookingService.sumPrice(bookingDto);
     }
 
 }
