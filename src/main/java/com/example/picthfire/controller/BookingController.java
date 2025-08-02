@@ -52,6 +52,8 @@ public class BookingController {
     }
 
     @PostMapping("/getrevenue")
-    public 
+    public double getRevenue(@RequestBody BookingDto bookingDto) {
+        
+    }
 
 }
